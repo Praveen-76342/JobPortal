@@ -1,7 +1,6 @@
 package dao;
 
-
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,8 +22,19 @@ public class UserDaoImpl implements UserDao {
 	JdbcTemplate jdbcTemplate;
 	public void register(User user) {
 		String sql="insert into user values(?,?,?,?,?)";
-		jdbcTemplate.update(sql,new Object[] {user.getUsername(), user.getPassword(), user.getFullname(), user.getNumber(), user.getEmail()});
+		String securepass=user.getPassword();
+		String hashpass=pass(securepass);
+		jdbcTemplate.update(sql,new Object[] {user.getUsername(), hashpass, user.getFullname(), user.getNumber(), user.getEmail()});
 	}
+	private static String pass(String securepass) {
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(securepass);
+		System.out.println(hashedPassword);
+		return hashedPassword;
+	}
+
+
 
 	public User validateUser(Login login) {
 		String sql="select * from user where username='"+ login.getUsername() + "' and password='"+login.getPassword()+"'";
@@ -37,12 +47,34 @@ class UserMapper implements RowMapper<User>{
 
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		User user =new User();
+		Login login=new Login();
 		user.setUsername(rs.getString("username"));
-		user.setPassword(rs.getString("password"));
+		String hashpass=rs.getString("password");
+		System.out.println("hashedpass"+hashpass);
+		String origpass=login.getPassword();
+		String password=depass(hashpass,origpass);
+		System.out.println("origpass"+origpass);
+		user.setPassword(password);
 		user.setFullname(rs.getString("fullname"));
 		user.setNumber(rs.getString("number"));
 		user.setEmail(rs.getString("email"));
 		return user;
 	}
-	
+	public static String depass(String hashpass, String origpass)
+	{
+		
+		System.out.println("hashpass");
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if(encoder.matches(hashpass,origpass))
+		{
+			return origpass;
+		}
+		else
+		{
+			return null;
+		}
+
+
+	}
+
 }

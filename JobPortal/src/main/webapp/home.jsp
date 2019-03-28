@@ -7,7 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="user">
 <a href="userlogin">login</a>
 <a href="userregister">register</a>
+</div>
+<a href="Recruiterlogin">login</a>
+<a href="RecruiterRegister">register</a>
+<div>
+
+</div>
 </body>
 </html>

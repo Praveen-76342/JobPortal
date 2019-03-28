@@ -1,6 +1,7 @@
 package dao;
 
 import model.Login;
+
 import model.User;
 
 public interface UserDao {

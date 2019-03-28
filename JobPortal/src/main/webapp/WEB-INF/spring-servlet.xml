@@ -16,6 +16,8 @@
     <context:annotation-config/>
     <bean id="userService" class="service.UserServiceImpl"/>
     <bean id="userDao" class="dao.UserDaoImpl"/>
+     <bean id="recruiterService" class="service.RecruiterServiceImpl"/>
+    <bean id="recruiterDao" class="dao.RecruiterDaoImpl"/>
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
     <property name="dataSource" ref="datasource"/>
     </bean>

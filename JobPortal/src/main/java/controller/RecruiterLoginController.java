@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import model.Login;
-import model.User;
-import service.UserService;
+import model.RecLogin;
+import model.Recruiter;
+import service.RecruiterService;
 
 @Controller
-public class UserLoginController {
+public class RecruiterLoginController {
 	@Autowired
-	UserService userService;
-	@RequestMapping(value="/userlogin", method=RequestMethod.GET)
+	RecruiterService recruiterService;
+	@RequestMapping(value="/Recruiterlogin", method=RequestMethod.GET)
 	public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav=new ModelAndView("userlogin");
-		mav.addObject("login",new Login());
+		ModelAndView mav=new ModelAndView("Recruiterlogin");
+		mav.addObject("reclogin",new RecLogin());
 		return mav;
 	}
-	@RequestMapping(value="/userloginProcess", method=RequestMethod.POST)
-	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response ,@ModelAttribute("login") Login login)
+	@RequestMapping(value="/RecruiterloginProcess", method=RequestMethod.POST)
+	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response ,@ModelAttribute("Recruiterlogin") RecLogin reclogin)
 	{
 		ModelAndView mav=null;
-		User user=userService.validateUser(login);
-		if(null !=user)
+		Recruiter recruiter=recruiterService.validateRecruiter(reclogin);
+		if(null !=recruiter)
 		{
 			mav=new ModelAndView("welcome");
-			mav.addObject("message","welcome" + "" +user.getFullname());
+			mav.addObject("message","welcome" + "" +recruiter.getCname());
 		}
 		else
 		{
-			mav= new ModelAndView("userlogin");
+			mav= new ModelAndView("Recruiterlogin");
 			mav.addObject("message","Username or Password is wrong");
 		}
 		return mav;
