@@ -4,9 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -33,10 +31,8 @@ public class UserDaoImpl implements UserDao {
 		System.out.println(hashedPassword);
 		return hashedPassword;
 	}
-
-
-
 	public User validateUser(Login login) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String sql="select * from user where username='"+ login.getUsername() + "' and password='"+login.getPassword()+"'";
 		List<User> user=jdbcTemplate.query(sql,new UserMapper());
 		return user.size() > 0 ? user.get(0) : null;

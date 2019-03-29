@@ -8,11 +8,12 @@
 </head>
 <body>
 <div class="user">
-<a href="userlogin">login</a>
-<a href="userregister">register</a>
+<a href="userlogin">User login</a>
+<a href="userregister">User register</a>
+<br>
 </div>
-<a href="Recruiterlogin">login</a>
-<a href="RecruiterRegister">register</a>
+<a href="Recruiterlogin">Recruiter login</a>
+<a href="RecruiterRegister">Recruiter register</a>
 <div>
 
 </div>
