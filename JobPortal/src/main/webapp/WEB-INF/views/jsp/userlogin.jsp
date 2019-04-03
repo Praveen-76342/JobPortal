@@ -11,13 +11,22 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
+<style>
+ .loginbox{
+ margin-left:300px;
+ margin-top:90px;
+     height:200px;
+     width:300px;
+     background: #DCDCDC;
+     padding-left: 100px;
+     padding-top:50px}</style>
 <body>
-<div class="jumbotron">
+<div class="loginbox">
 ${message}
 <form action="userloginProcess" modelAttribute="login" method="post">
-username<input type="text" name="username" id="username"/><br><br><br>
-password<input type="password" name="password" id="password"/><br><br><br>
-<button id="login" name="login">login</button>
+username: <input type="text" name="username" id="username"/><br><br><br>
+password:  <input type="password" name="password" id="password"/><br><br><br>
+<button id="login" name="login" >login</button>
 </form>
 </div>
 </body>

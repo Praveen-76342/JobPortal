@@ -32,10 +32,20 @@ public class UserDaoImpl implements UserDao {
 		return hashedPassword;
 	}
 	public User validateUser(Login login) {
+		User user =new User();
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String sql="select * from user where username='"+ login.getUsername() + "' and password='"+login.getPassword()+"'";
-		List<User> user=jdbcTemplate.query(sql,new UserMapper());
-		return user.size() > 0 ? user.get(0) : null;
+		List<User> list=jdbcTemplate.query(sql,new UserMapper());
+		System.out.println(user.getPassword());
+		System.out.println(login.getPassword());
+		if(encoder.matches(user.getPassword(),login.getPassword()))
+		{
+			return list.get(0);
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 }
@@ -44,33 +54,20 @@ class UserMapper implements RowMapper<User>{
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		User user =new User();
 		Login login=new Login();
-		user.setUsername(rs.getString("username"));
-		String hashpass=rs.getString("password");
-		System.out.println("hashedpass"+hashpass);
-		String origpass=login.getPassword();
-		String password=depass(hashpass,origpass);
-		System.out.println("origpass"+origpass);
-		user.setPassword(password);
-		user.setFullname(rs.getString("fullname"));
-		user.setNumber(rs.getString("number"));
-		user.setEmail(rs.getString("email"));
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//if(encoder.matches(pass,securepass);
+		String pass=login.getPassword();
+		String securepass=rs.getString(2);
+		user.setUsername(rs.getString(1));
+		user.setPassword(rs.getString(2));
+		user.setFullname(rs.getString(3));
+		user.setNumber(rs.getString(4));
+		user.setEmail(rs.getString(5));
 		return user;
 	}
-	public static String depass(String hashpass, String origpass)
-	{
-		
-		System.out.println("hashpass");
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if(encoder.matches(hashpass,origpass))
-		{
-			return origpass;
-		}
-		else
-		{
-			return null;
-		}
-
+	
+	
 
 	}
 
-}
+
