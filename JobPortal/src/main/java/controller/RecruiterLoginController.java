@@ -49,6 +49,7 @@ public class RecruiterLoginController {
 			mav= new ModelAndView("Recruiterlogin");
 			mav.addObject("message","Username or Password is wrong");
 		}
+	
 		return mav;
 		
 	}
