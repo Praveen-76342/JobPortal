@@ -47,35 +47,14 @@ class RecruiterMapper implements RowMapper<Recruiter>{
 
 	public Recruiter mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Recruiter recruiter =new Recruiter();
-		RecLogin reclogin=new RecLogin();
 		recruiter.setUsername(rs.getString("username"));
-		String hashpass=rs.getString("password");
-		System.out.println("hashedpass"+hashpass);
-		String origpass=reclogin.getPassword();
-		String password=depass(hashpass,origpass);
-		System.out.println("origpass"+origpass);
-		recruiter.setPassword(password);
+		recruiter.setPassword(rs.getString("password"));
 		recruiter.setCname(rs.getString("fullname"));
 		recruiter.setNumber(rs.getString("number"));
 		recruiter.setEmail(rs.getString("email"));
 		return recruiter;
 	}
-	public static String depass(String hashpass, String origpass)
-	{
-		
-		System.out.println("hashpass");
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if(encoder.matches(hashpass,origpass))
-		{
-			return origpass;
-		}
-		else
-		{
-			return null;
-		}
-
-
-	}
+	
 
 }
 

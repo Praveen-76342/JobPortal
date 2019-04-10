@@ -3,6 +3,7 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +29,20 @@ public class RecruiterLoginController {
 	{
 		ModelAndView mav=null;
 		Recruiter recruiter=recruiterService.validateRecruiter(reclogin);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		if(null !=recruiter)
 		{
+			if(encoder.matches(reclogin.getPassword(), recruiter.getPassword()))
+			{
 			mav=new ModelAndView("welcome");
 			mav.addObject("message","welcome" + "" +recruiter.getCname());
+			}
+			else
+			{
+				mav= new ModelAndView("Recruiterlogin");
+				mav.addObject("message","Password is wrong");
+			}
 		}
 		else
 		{
