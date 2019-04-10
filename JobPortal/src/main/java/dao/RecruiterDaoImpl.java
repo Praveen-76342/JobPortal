@@ -40,7 +40,7 @@ public class RecruiterDaoImpl implements RecruiterDao {
 			return recruiter.get(0);
 		else
 			return null;
-		
+	
 	}
 }
 class RecruiterMapper implements RowMapper<Recruiter>{

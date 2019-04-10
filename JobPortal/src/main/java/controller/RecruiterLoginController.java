@@ -30,7 +30,7 @@ public class RecruiterLoginController {
 		ModelAndView mav=null;
 		Recruiter recruiter=recruiterService.validateRecruiter(reclogin);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
+	
 		if(null !=recruiter)
 		{
 			if(encoder.matches(reclogin.getPassword(), recruiter.getPassword()))
