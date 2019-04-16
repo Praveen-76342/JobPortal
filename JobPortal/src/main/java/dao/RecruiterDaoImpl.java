@@ -34,7 +34,7 @@ public class RecruiterDaoImpl implements RecruiterDao {
 	}
 	public Recruiter  validateRecruiter(RecLogin reclogin) {
 		
-		String sql="select * from recruiter where username='"+ reclogin.getUsername() + "' and password='"+reclogin.getPassword()+"'";
+		String sql="select * from recruiter where username='"+ reclogin.getUsername() + "'";
 		List<Recruiter> recruiter=jdbcTemplate.query(sql,new RecruiterMapper());
 		if (recruiter.size() > 0)
 			return recruiter.get(0);
@@ -49,8 +49,8 @@ class RecruiterMapper implements RowMapper<Recruiter>{
 		Recruiter recruiter =new Recruiter();
 		recruiter.setUsername(rs.getString("username"));
 		recruiter.setPassword(rs.getString("password"));
-		recruiter.setCname(rs.getString("fullname"));
-		recruiter.setNumber(rs.getString("number"));
+		recruiter.setCname(rs.getString("companyname"));
+		recruiter.setNumber(rs.getString("contact"));
 		recruiter.setEmail(rs.getString("email"));
 		return recruiter;
 	}

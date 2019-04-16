@@ -33,6 +33,8 @@ public class RecruiterLoginController {
 	
 		if(null !=recruiter)
 		{
+			System.out.println(reclogin.getPassword());
+			System.out.println(recruiter.getPassword());
 			if(encoder.matches(reclogin.getPassword(), recruiter.getPassword()))
 			{
 			mav=new ModelAndView("welcome");
