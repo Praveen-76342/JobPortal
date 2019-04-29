@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="model.User;" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Insert title here</title>
 </head>
 <body>
-${message}
-<%=session.getAttribute("user")%>
-<% 
+<table>
+<tr>
+<th>Job Name</th>
+<th>Job Description</th>
+<th>Skills Required</th>
+<th>Click to Apply</th>
+</tr>
+<tr>
 
-%>
-
-
+</tr>
+</table>
 </body>
 </html>

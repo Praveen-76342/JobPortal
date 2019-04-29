@@ -1,6 +1,7 @@
 package service;
 
 import model.RecLogin;
+
 import model.Recruiter;
 
 public interface RecruiterService {
