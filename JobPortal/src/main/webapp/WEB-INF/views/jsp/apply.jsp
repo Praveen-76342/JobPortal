@@ -14,8 +14,15 @@
  %>
  <table>
  <tr>
- <td><%=job%></td>
+<td> <strong><%=job%></strong></td>
  </tr>
  </table>
+ <form action="confirm.jsp">
+Why do you select this job?
+<input type="text" name="answer1"/><br><br>
+What do you know about our company?
+<input type="text" name="answer2"/><br><br>
+<input type="submit" value="Submit all Answers and Confirm Application"/>
+ </form>
 </body>
 </html>
