@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,18 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.JobDao;
 import model.Job;
-
 @Controller
-public class SearchJobsController {
-	@Autowired
-	JobDao jobDao;
-	@RequestMapping(value="/search", method=RequestMethod.GET)
-	public ModelAndView showJob(HttpServletRequest request, HttpServletResponse response) {
+public class ApplyController {
+	
+		@Autowired
+		JobDao jobDao;
+		@RequestMapping(value="/applyjob", method=RequestMethod.GET)
+		public ModelAndView applyJob(HttpServletRequest request, HttpServletResponse response) {
+			ModelAndView mav=new ModelAndView("apply");
+			return mav;
+		}
 
-		ModelAndView mav=new ModelAndView("search");
-		List<Job> listJob = jobDao.jobList();
-		mav.addObject("listJob", listJob);
-		return mav;
 	}
 
-}

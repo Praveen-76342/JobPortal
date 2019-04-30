@@ -44,7 +44,7 @@ public class UserLoginController {
 			mav=new ModelAndView("userhome");
 			mav.addObject("message","welcome" + "" +user.getFullname());
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("id", user.getUsername());
 			}
 			else
 			{

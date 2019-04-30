@@ -1,8 +1,10 @@
 package dao;
 
+import java.util.List;
+
 import model.Job;
 
 public interface JobDao {
-	Job search(Job job);
-
+	public List<Job> jobList();
+	public Job addJob(Job job);
 }

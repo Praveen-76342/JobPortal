@@ -23,6 +23,7 @@
 <body>
 <div class="loginbox">
 ${message}
+${logout}
 <form action="userloginProcess" modelAttribute="login" method="post">
 username: <input type="text" name="username" id="username"/><br><br><br>
 password:  <input type="password" name="password" id="password"/><br><br><br>

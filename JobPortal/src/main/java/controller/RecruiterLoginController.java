@@ -2,6 +2,8 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -37,9 +39,12 @@ public class RecruiterLoginController {
 			System.out.println(recruiter.getPassword());
 			if(encoder.matches(reclogin.getPassword(), recruiter.getPassword()))
 			{
-			mav=new ModelAndView("welcome");
+			mav=new ModelAndView("RecruiterHome");
 			mav.addObject("message","welcome" + "" +recruiter.getCname());
+			HttpSession session = request.getSession();
+			session.setAttribute("id", recruiter.getCname());
 			}
+			
 			else
 			{
 				mav= new ModelAndView("Recruiterlogin");

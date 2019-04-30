@@ -1,9 +1,18 @@
 package dao;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -44,6 +53,19 @@ public class UserDaoImpl implements UserDao {
 		{
 			return null;
 		}
+	}
+	public User apply(HttpServletRequest request, HttpServletResponse response)
+	           throws IOException, ServletException {
+
+		HttpSession session = request.getSession();
+		String uname=(String) session.getAttribute("id");
+		String sql="select * from user where username='"+ uname + "'";
+		return null;
+	}
+	@Override
+	public User apply() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

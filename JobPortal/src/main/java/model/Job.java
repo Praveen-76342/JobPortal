@@ -1,7 +1,17 @@
 package model;
 
 public class Job {
+private String cname;
 private String name;
+private String description;
+private String skills;
+public String getCname() {
+	return cname;
+}
+public void setCname(String cname) {
+	this.cname = cname;
+}
+
 public String getName() {
 	return name;
 }
@@ -20,6 +30,5 @@ public String getSkills() {
 public void setSkills(String skills) {
 	this.skills = skills;
 }
-private String description;
-private String skills;
+
 }
